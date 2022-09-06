@@ -1,0 +1,49 @@
+<configuration>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <!-- reset all previous level configurations of all j.u.l. loggers -->
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{mm:ss.SSS}: %-5level - %msg [%F:%L] %n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+            <!--            <level>DEBUG</level>-->
+            <!--            <level>TRACE</level>-->
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/debug-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- 30 days to keep -->
+            <maxHistory>30</maxHistory>
+            <!-- total size of all archive files, if total size > 100GB, it will delete old archived file -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg [%F:%L] %n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+<!--            <level>TRACE</level>-->
+        </filter>
+    </appender>
+
+    <appender name="FILE-ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>1024</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE" />
+    </appender>
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="FILE-ASYNC"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
