@@ -2,7 +2,7 @@
 
 The "Twitter API V2" for Java is *at least* badly documented. And so is all. How to get OAuth right? Different for almost every endpoint. Getting a working Bearer Token for **OAuth1.0a Client Context**? No, not the one from the Developer Portal!
 
-I suffered and then remembered I had written some code ten years back, in 2013, to do OAuth1.0b between two servers. Adapted the code tonight to work with twitter. I will need this for a fun project [(miniraoul-requote)](https://twitter.com/miniraoul).
+I suffered and then remembered I had written some code ten years back, in 2013, to do OAuth1.0b between two servers. Adapted the code tonight to work with twitter. I will need this for a fun project [(miniraoul-requote)](https://twitter.com/miniraoul). Also maybe see https://raoulsson.com or mail to hello@raoulsson.com
 
 LoadTweetsRequest needs a different OAuth method than PostTweetRequest. This should get you going. 
 
